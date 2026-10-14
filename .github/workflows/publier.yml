@@ -1,0 +1,44 @@
+# Construit les applications et le site, puis les publie sur GitHub Pages.
+# Réglage à faire une fois : Settings → Pages → Build and deployment → Source : « GitHub Actions ».
+# Si la construction échoue, le site déjà en ligne reste inchangé.
+name: Publier le site
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construire:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Tester le moteur de Tables en tête
+        run: node apps/tables-en-tete/test/simulate.js
+
+      - name: Construire les applications et le site
+        run: python3 build.py --install
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/public
+
+  publier:
+    needs: construire
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

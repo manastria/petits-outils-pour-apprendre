@@ -1,0 +1,35 @@
+{
+  "title": "Petits outils pour apprendre",
+  "tagline": "Gratuits, sans compte, et ils marchent même sans Internet.",
+  "author": "Manastria",
+  "year": 2026,
+  "repo_url": "https://github.com/manastria/petits-outils-pour-apprendre",
+  "credit_claude": true,
+  "apps_dir": "../apps",
+  "apps": [
+    {
+      "slug": "cahier-latex",
+      "name": "Cahier LaTeX",
+      "status": "essai",
+      "source": "cahier-latex/dist/cahier-latex-hors-ligne.html",
+      "theme": "#2448a8",
+      "background": "#eaeef6",
+      "pitch": "Écrire des formules de maths au clavier, et les voir s’afficher en direct.",
+      "details": "L’élève tape sa formule, le résultat s’affiche juste au-dessus, sur papier quadrillé. L’éditeur colore chaque paire d’accolades, aide à ne pas en oublier et explique les erreurs en français. Un bouton copie la formule vers Word.",
+      "for": "Collège, lycée, études supérieures. Pensé pour les élèves qui prennent leurs cours à l’ordinateur.",
+      "alt": "Capture d’écran de Cahier LaTeX : une formule saisie dans l’éditeur et son affichage sur papier quadrillé."
+    },
+    {
+      "slug": "tables-en-tete",
+      "name": "Tables en tête",
+      "status": "bientot",
+      "source": "tables-en-tete/dist/tables-en-tete-hors-ligne.html",
+      "theme": "#213a86",
+      "background": "#f1f3f8",
+      "pitch": "Réviser les tables de multiplication, à la manière d’Anki.",
+      "details": "L’application repère les tables que l’enfant connaît mal ou met du temps à retrouver, et les lui fait revoir plus souvent. Points, séries et étoiles donnent envie de revenir ; jamais de blocage : après deux erreurs, la réponse s’affiche. Trois types de séance, dont un « jour calme » pour les jours de fatigue.",
+      "for": "École primaire et début de collège.",
+      "alt": "Capture d’écran de Tables en tête : une table de Pythagore colorée selon la progression."
+    }
+  ]
+}

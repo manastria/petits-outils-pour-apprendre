@@ -1,0 +1,9 @@
+{
+  "name": "tables-en-tete",
+  "private": true,
+  "description": "Entraînement aux tables de multiplication par répétition espacée — fichier HTML autonome",
+  "scripts": { "build": "python3 build.py", "test": "node test/simulate.js" },
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.0.0"
+  }
+}

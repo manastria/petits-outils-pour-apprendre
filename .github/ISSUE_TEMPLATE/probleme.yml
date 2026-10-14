@@ -1,0 +1,48 @@
+name: Signaler un problème ou proposer une idée
+description: Un outil ne marche pas comme prévu, ou vous avez une idée pour l’améliorer.
+title: "[Outil] Résumé en une phrase"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de prendre le temps d’écrire !
+
+        **Cette page est publique. Ne mettez aucune information personnelle** : ni nom, ni prénom, ni école, ni adresse e-mail, et rien qui permette d’identifier un enfant.
+  - type: dropdown
+    id: outil
+    attributes:
+      label: De quel outil s’agit-il ?
+      options:
+        - Cahier LaTeX
+        - Tables en tête
+        - La page d’accueil du site
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: quoi
+    attributes:
+      label: Que s’est-il passé ?
+      description: Racontez ce que vous avez fait, ce que vous attendiez et ce qui est arrivé à la place. Une capture d’écran peut être glissée dans cette zone.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Comment utilisez-vous l’outil ?
+      options:
+        - Page en ligne, dans le navigateur
+        - Application installée depuis la page
+        - Fichier téléchargé, ouvert sur l’ordinateur
+        - Je ne sais pas
+  - type: input
+    id: appareil
+    attributes:
+      label: Sur quel appareil ?
+      description: Ordinateur, tablette ou téléphone, et son système.
+      placeholder: Par exemple, ordinateur Windows 11, iPad, téléphone Android…
+  - type: input
+    id: navigateur
+    attributes:
+      label: Avec quel navigateur ?
+      placeholder: Par exemple, Chrome, Edge, Firefox, Safari…

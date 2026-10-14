@@ -1,0 +1,11 @@
+{
+  "name": "cahier-latex",
+  "private": true,
+  "description": "Éditeur LaTeX/KaTeX pour collégiens — dépendances embarquées au build",
+  "scripts": { "build": "python3 build.py" },
+  "dependencies": {
+    "katex": "0.16.11",
+    "@fontsource/atkinson-hyperlegible": "^5.0.0",
+    "@fontsource/atkinson-hyperlegible-mono": "^5.0.0"
+  }
+}

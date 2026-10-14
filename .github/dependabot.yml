@@ -1,0 +1,7 @@
+# Propose une mise à jour des actions GitHub utilisées par le workflow, une fois par mois.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
