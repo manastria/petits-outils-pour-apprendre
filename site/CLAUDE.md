@@ -1,6 +1,6 @@
 # Site « Petits outils pour apprendre » — notes pour Claude Code
 
-Site statique qui présente et héberge les applications du dossier `../apps/` : **Cahier LaTeX** et **Tables en tête**, et d’autres à venir. Public visé : des **parents non informaticiens** ; ce qu’ils voient doit se comprendre sans jargon. Règles communes du dépôt (public, pas de données personnelles, hors ligne d’abord, typographie) : voir `../CLAUDE.md`.
+Site statique qui présente et héberge les applications du dossier `../apps/` : **Maths au clavier** (anciennement « Cahier LaTeX » : le `slug` et les clés `localStorage` gardent `cahier-latex`) et **Tables en tête**, et d’autres à venir. Public visé : des **parents non informaticiens** ; ce qu’ils voient doit se comprendre sans jargon. Règles communes du dépôt (public, pas de données personnelles, hors ligne d’abord, typographie) : voir `../CLAUDE.md`.
 
 Statut actuel : **« à l’essai »**. Le ton est honnête et sans promesse ; l’assistance est « fournie telle quelle ». Contact **uniquement par les Issues** du dépôt (bouton de la section « À l’essai »).
 

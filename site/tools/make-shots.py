@@ -30,9 +30,10 @@ def cahier(pg):
     pg.click("#src"); pg.keyboard.press("End"); pg.keyboard.press("ArrowLeft")
     pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(400)
     box = "(e=>{const b=e.getBoundingClientRect();return [b.x,b.y,b.width,b.height]})"
-    top = clip(pg, "(()=>{const r=document.querySelector('#streak').getBoundingClientRect();const h=document.querySelector('header').getBoundingClientRect();return [h.x,0,h.width,r.bottom+12]})()")
-    ed = clip(pg, box + "(document.querySelector('#src').closest('.card'))")
-    return stack([top, ed], (234, 238, 246))
+    top = clip(pg, "(()=>{const h=document.querySelector('header').getBoundingClientRect();return [h.x,0,h.width,h.bottom+12]})()")
+    sheet = clip(pg, box + "(document.querySelector('.sheet'))")
+    ed = clip(pg, "(()=>{const c=document.querySelector('#src').closest('.card').getBoundingClientRect();const e=document.querySelector('#ed').getBoundingClientRect();return [c.x,c.y,c.width,e.bottom-c.y+14]})()")
+    return stack([top, sheet, ed], (234, 238, 246))
 
 
 # Élève fictif : dix jours d’entraînement simulés avec le vrai moteur de l’application (graine fixe).

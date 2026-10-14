@@ -1,4 +1,4 @@
-# Cahier LaTeX — notes pour Claude Code
+# Maths au clavier (dossier et identifiants `cahier-latex`) — notes pour Claude Code
 
 Éditeur LaTeX/KaTeX dans une seule page HTML, conçu pour les élèves de collège qui prennent leurs cours de maths à l’ordinateur, notamment ceux qui ont du mal à écrire à la main (dys). Les formules sont collées dans **Word**, et les élèves **n’ont pas toujours Internet à l’école** : la version hors ligne est la version principale, elle ne doit jamais faire de requête réseau.
 

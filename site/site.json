@@ -12,17 +12,17 @@
   "apps": [
     {
       "slug": "cahier-latex",
-      "name": "Cahier LaTeX",
+      "name": "Maths au clavier",
       "status": "essai",
       "source": "cahier-latex/dist/cahier-latex-hors-ligne.html",
       "theme": "#2448a8",
       "background": "#eaeef6",
       "pitch": "Écrire des formules de maths au clavier, et les voir s’afficher en direct.",
-      "seo_title": "Cahier LaTeX : écrire les maths au clavier, gratuit et sans Internet",
-      "description": "Éditeur de formules de maths gratuit, sans compte et utilisable sans Internet, avec aperçu en direct. Utile aux élèves qui prennent leurs cours à l’ordinateur, notamment les élèves dys (dyspraxie, dysgraphie).",
-      "details": "L’élève tape sa formule, le résultat s’affiche juste au-dessus, sur papier quadrillé. L’éditeur colore chaque paire d’accolades, aide à ne pas en oublier et explique les erreurs en français. Un bouton copie la formule vers Word.",
+      "seo_title": "Maths au clavier : écrire des formules de maths (LaTeX), gratuit et sans Internet",
+      "description": "Éditeur de formules de maths (syntaxe LaTeX) gratuit, sans compte et utilisable sans Internet, avec aperçu en direct. Utile aux élèves qui prennent leurs cours à l’ordinateur, notamment les élèves dys (dyspraxie, dysgraphie).",
+      "details": "Les formules s’écrivent en LaTeX, une façon d’écrire les maths au clavier très utilisée en mathématiques, au lycée et dans les études supérieures. L’élève tape sa formule, le résultat s’affiche juste au-dessus, sur papier quadrillé. L’éditeur colore chaque paire d’accolades, aide à ne pas en oublier et explique les erreurs en français. Un bouton copie la formule vers Word.",
       "for": "Collège, lycée, études supérieures. Pensé pour les élèves qui prennent leurs cours à l’ordinateur.",
-      "alt": "Capture d’écran de Cahier LaTeX : une formule saisie dans l’éditeur et son affichage sur papier quadrillé."
+      "alt": "Capture d’écran de Maths au clavier : une formule saisie dans l’éditeur et son affichage sur papier quadrillé."
     },
     {
       "slug": "tables-en-tete",

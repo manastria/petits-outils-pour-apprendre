@@ -13,7 +13,7 @@ body:
     attributes:
       label: De quel outil s’agit-il ?
       options:
-        - Cahier LaTeX
+        - Maths au clavier
         - Tables en tête
         - La page d’accueil du site
         - Autre

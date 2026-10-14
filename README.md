@@ -6,7 +6,7 @@ Petites applications web d’apprentissage, **gratuites, sans compte, qui foncti
 
 | Outil | Dossier | Rôle |
 |---|---|---|
-| Cahier LaTeX | [`apps/cahier-latex`](apps/cahier-latex) | Saisie de formules de maths avec aperçu en direct |
+| Maths au clavier | [`apps/cahier-latex`](apps/cahier-latex) | Saisie de formules de maths avec aperçu en direct |
 | Tables en tête | [`apps/tables-en-tete`](apps/tables-en-tete) | Entraînement aux tables de multiplication (répétition espacée) |
 
 Chaque outil est **un seul fichier HTML autonome** (polices et bibliothèques comprises, aucune requête réseau), ce qui permet de le copier sur une clé USB et de l’ouvrir d’un double-clic.
