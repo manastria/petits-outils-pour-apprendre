@@ -18,11 +18,11 @@ def fonts():
     return out
 
 def main():
-    src = SRC.read_text()
+    src = SRC.read_text(encoding="utf-8")
     assert "/*FONTS*/" in src
     page = src.replace("/*FONTS*/", fonts())
     DIST.mkdir(exist_ok=True)
-    (DIST / "tables-en-tete.html").write_text(page)
+    (DIST / "tables-en-tete.html").write_text(page, encoding="utf-8")
     s = page.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")
     title, rest = s.split("\n", 1)
     doc = ('<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n'
@@ -31,9 +31,9 @@ def main():
            + "\n</body>\n</html>\n")
     leaks = [u for u in re.findall(r"https?://[\w.-]+", doc) if u != "http://www.w3.org"]
     assert not leaks, f"référence réseau dans la version hors ligne : {set(leaks)}"
-    (DIST / "tables-en-tete-hors-ligne.html").write_text(doc)
+    (DIST / "tables-en-tete-hors-ligne.html").write_text(doc, encoding="utf-8")
     for i, js in enumerate(re.findall(r"<script>([\s\S]*?)</script>", doc)):
-        tmp = DIST / f".check{i}.js"; tmp.write_text(js)
+        tmp = DIST / f".check{i}.js"; tmp.write_text(js, encoding="utf-8")
         try: subprocess.run(["node", "--check", str(tmp)], check=True)
         finally: tmp.unlink(missing_ok=True)
     print("OK :", *(f"{p.name} ({p.stat().st_size // 1024} Ko)" for p in sorted(DIST.glob("*.html"))))

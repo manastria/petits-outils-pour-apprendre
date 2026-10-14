@@ -18,6 +18,7 @@ Dépôt unique (public) de petites applications web d’apprentissage, **gratuit
 - **Interface en français**, ton simple et encourageant, jamais punitif.
 - **Typographie française** : apostrophe `’`, `« »` avec espace fine insécable (U+202F) à l’intérieur, espace fine insécable avant `;` `?` `!`. Les pages du site sont corrigées automatiquement par `site/build-site.py` ; dans les applications, c’est à écrire correctement à la main.
 - **Lisibilité** (public dys) : police Atkinson Hyperlegible, grandes tailles, messages courts et concrets.
+- **Scripts Python et Windows** : toujours `read_text(encoding="utf-8")` / `write_text(…, encoding="utf-8")`. Sans cela, Python sous Windows lit en cp1252 et la construction échoue sur les caractères accentués.
 - Chaque application garde ses clés `localStorage` **préfixées par son nom** (le site partage une seule origine pour tous les outils).
 
 ## Construire et vérifier

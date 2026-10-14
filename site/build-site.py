@@ -19,6 +19,20 @@ OUT = ROOT / "public"
 SRC = ROOT / "src"
 NB = " "  # espace fine insécable
 WARN = []
+SITE_URL = CONF["site_url"].rstrip("/") + "/" if CONF.get("site_url") else ""
+
+
+def seo_head(path, title, desc, image="icon-512.png"):
+    """Balises pour les moteurs de recherche et les aperçus de partage. L’URL absolue ne sert qu’aux moteurs :
+    les liens de navigation restent relatifs. Sans « site_url », pas d’URL canonique ni d’image de partage."""
+    t, ds = esc(title), esc(desc)
+    h = (f'<meta name="description" content="{ds}">\n'
+         '<meta property="og:type" content="website">\n<meta property="og:locale" content="fr_FR">\n'
+         f'<meta property="og:title" content="{t}">\n<meta property="og:description" content="{ds}">\n')
+    if SITE_URL:
+        h += (f'<link rel="canonical" href="{SITE_URL}{path}">\n<meta property="og:url" content="{SITE_URL}{path}">\n'
+              f'<meta property="og:image" content="{SITE_URL}{image}">\n')
+    return h
 
 
 # ---------- Typographie française (règles du Lexique de l’Imprimerie nationale) ----------
@@ -96,7 +110,11 @@ def build_app(a):
             '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n')
     reg = ('<script>if("serviceWorker"in navigator&&/^https?:$/.test(location.protocol))'
            'addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})</script>\n')
-    page = doc.replace("</head>", head + "</head>", 1).replace("</body>", reg + "</body>", 1)
+    # Titre et description pour les moteurs de recherche (page en ligne seulement, pas le fichier téléchargé).
+    title = a.get("seo_title") or a["name"]
+    head += seo_head(f"{slug}/", title, a.get("description") or a["pitch"], f"{slug}/icon-512.png")
+    doc_seo = re.sub(r"<title>[^<]*</title>", lambda m: f"<title>{esc(title)}</title>", doc, count=1)
+    page = doc_seo.replace("</head>", head + "</head>", 1).replace("</body>", reg + "</body>", 1)
     (d / "index.html").write_text(page, encoding="utf-8")
 
     icons = SRC / "icons" / slug
@@ -148,8 +166,8 @@ self.addEventListener('fetch', e => {{
 
 
 # ---------- Pages ----------
-def shell(title, desc, body, rel):
-    t, ds = esc(title), esc(desc)
+def shell(title, desc, body, rel, path):
+    t = esc(title)
     nav = (f'<a href="{rel}#outils">Les outils</a><a href="{rel}#hors-ligne">Sans Internet</a>'
            f'<a href="{rel}apropos/">À propos</a>')
     repo = (f'<a href="{html.escape(CONF["repo_url"])}">Code source</a>' if CONF.get("repo_url") else "")
@@ -160,13 +178,8 @@ def shell(title, desc, body, rel):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{t}</title>
-<meta name="description" content="{ds}">
 <meta name="theme-color" content="#213a86">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="{t}">
-<meta property="og:description" content="{ds}">
-<link rel="icon" type="image/png" href="{rel}icon-192.png">
+{seo_head(path, title, desc)}<link rel="icon" type="image/png" href="{rel}icon-192.png">
 <link rel="apple-touch-icon" href="{rel}apple-touch-icon.png">
 <link rel="stylesheet" href="{rel}site.css">
 </head>
@@ -267,7 +280,9 @@ def main():
     index = fill((SRC / "index.body.html").read_text(encoding="utf-8"),
                  {"TITLE": esc(CONF["title"]), "CARDS": "\n".join(card(a) for a in apps), "CONTACT": contact})
     (OUT / "index.html").write_text(
-        typo_html(shell(CONF["title"], CONF["tagline"] + " Outils d’apprentissage faits par un enseignant.", index, "")),
+        typo_html(shell(CONF.get("seo_title") or CONF["title"],
+                        CONF.get("description") or CONF["tagline"] + " Outils d’apprentissage faits par un enseignant.",
+                        index, "", "")),
         encoding="utf-8")
 
     # À propos
@@ -282,15 +297,25 @@ def main():
               {"AUTHOR": esc(CONF["author"]), "CLAUDE": claude, "SOURCE": source})
     (OUT / "apropos").mkdir()
     (OUT / "apropos" / "index.html").write_text(
-        typo_html(shell("À propos et crédits — " + CONF["title"], "Qui a fait ces outils, licence MIT et composants utilisés.", ap, "../")),
+        typo_html(shell("À propos et crédits — " + CONF["title"], "Qui a fait ces outils, licence MIT et composants utilisés.", ap, "../", "apropos/")),
         encoding="utf-8")
+
+    # Moteurs de recherche : plan du site et robots.txt (URL absolues, donc seulement avec « site_url »)
+    if SITE_URL:
+        pages = ["", "apropos/"] + [a["slug"] + "/" for a in apps if a["status"] == "essai"]
+        (OUT / "sitemap.xml").write_text(
+            '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            + "".join(f"  <url><loc>{SITE_URL}{u}</loc></url>\n" for u in pages) + "</urlset>\n", encoding="utf-8")
+        (OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n", encoding="utf-8")
+    else:
+        WARN.append("« site_url » est vide dans site.json : ni URL canonique ni sitemap.xml pour les moteurs de recherche.")
 
     # Contrôles : typographie des pages, absence de réseau externe (hors liens <a> et licences)
     errs = []
     for p in ("index.html", "apropos/index.html"):
         errs += lint(p, (OUT / p).read_text(encoding="utf-8"))
         for u in re.findall(r'(?:src|href)="(https?://[^"]+)"', (OUT / p).read_text(encoding="utf-8")):
-            if re.search(r"<(?:img|link|script)\b[^>]*" + re.escape(u), (OUT / p).read_text(encoding="utf-8")):
+            if re.search(r"<(?:img|link(?![^>]*rel=\"canonical\")|script)\b[^>]*" + re.escape(u), (OUT / p).read_text(encoding="utf-8")):
                 errs.append(f"{p} : ressource externe chargée : {u}")
     if errs:
         print("Problèmes de typographie ou de ressources :", *errs, sep="\n  - ")

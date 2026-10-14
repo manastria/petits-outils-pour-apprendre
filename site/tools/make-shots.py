@@ -7,7 +7,7 @@ from PIL import Image
 from playwright.sync_api import sync_playwright
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CONF = json.loads((ROOT / "site.json").read_text())
+CONF = json.loads((ROOT / "site.json").read_text(encoding="utf-8"))
 
 def clip(pg, js):
     x, y, w, h = pg.evaluate(js)

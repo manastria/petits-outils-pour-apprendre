@@ -8,7 +8,7 @@ Statut actuel : **« à l’essai »**. Le ton est honnête et sans promesse ; l
 
 | Chemin | Rôle |
 |---|---|
-| `site.json` | **Configuration** : titre, auteur, `repo_url`, liste des applications (statut `essai` ou `bientot`). Un `contact` e-mail est possible mais non utilisé. |
+| `site.json` | **Configuration** : titre, auteur, `repo_url`, `site_url` et `seo_title` / `description` (référencement, voir plus bas), liste des applications (statut `essai` ou `bientot`). Un `contact` e-mail est possible mais non utilisé. |
 | `build-site.py` | Génère `public/` (bibliothèque standard seulement). Lancé par `../build.py` après les applications. |
 | `src/index.body.html`, `src/apropos.body.html` | Contenu des deux pages (marqueurs `{{…}}`). L’enveloppe (en-tête, pied, `<head>`) est dans `shell()` de `build-site.py`. |
 | `src/site.css` | Feuille de style commune, mêmes jetons de couleur que les applications. |
@@ -26,6 +26,7 @@ Les applications sont lues dans `../apps/<slug>/dist/<slug>-hors-ligne.html` (`a
 - `public/<slug>/index.html` : le même document avec, en plus, `<link rel="manifest">`, icônes, `theme-color` et un petit script qui enregistre `sw.js` **seulement en http(s)** (donc sans effet quand on ouvre le fichier en `file://`).
 - `manifest.webmanifest` et `sw.js` générés. Le **nom du cache contient une empreinte (SHA-256) du contenu** : toute modification de l’application change `sw.js`, le navigateur installe la nouvelle version et supprime l’ancienne. Stratégie : cache d’abord, réseau en secours.
 - Le build **échoue** si l’application référence une URL réseau (hors `http://www.w3.org`) ou si la structure HTML est inattendue (`</head>` / `</body>` absents ou multiples).
+- Sur `index.html` seulement : `<title>` remplacé par `seo_title`, `meta description`, URL canonique et balises de partage (`og:`). Le fichier téléchargé garde son titre court.
 
 Les applications ne sont **pas modifiées** par le site : tout ce qui concerne le mode installable est injecté à la construction.
 
@@ -44,6 +45,7 @@ Les applications ne sont **pas modifiées** par le site : tout ce qui concerne l
 - Le mode installable exige HTTPS (ou `localhost`).
 - Une page qui a déjà un service worker actif sert l’ancien contenu jusqu’à la visite suivante : c’est normal. Pour tester une mise à jour, recharger deux fois.
 - Les fins de ligne Windows (`\r\n`) d’un fichier d’application sont normalisées en `\n` par le build.
+- **Référencement** : `site_url` (adresse publique, avec `/` final) sert uniquement aux URL absolues pour les moteurs : `<link rel="canonical">`, `og:url`, `og:image`, `sitemap.xml`, `robots.txt`. Sans lui, ces éléments ne sont pas produits (avertissement). À changer si le site déménage. Les mots que cherchent les parents (« dys », « tables de multiplication »…) doivent figurer dans les titres, descriptions et la section « Pour les élèves dys », sans promesse.
 - **Ne pas parler de l’élève ni d’un diagnostic** dans les pages publiques, et ne pas citer d’établissement : le dépôt et le site sont publics.
 
 ## Conventions

@@ -1,6 +1,9 @@
 {
   "title": "Petits outils pour apprendre",
   "tagline": "Gratuits, sans compte, et ils marchent même sans Internet.",
+  "seo_title": "Petits outils pour apprendre : applications gratuites pour les élèves, dont les élèves dys",
+  "description": "Applications gratuites, sans compte et utilisables sans Internet, faites par un enseignant : tables de multiplication, formules de maths au clavier. Pensées aussi pour les élèves dys (dyslexie, dyspraxie, dyscalculie).",
+  "site_url": "https://manastria.github.io/petits-outils-pour-apprendre/",
   "author": "Manastria",
   "year": 2026,
   "repo_url": "https://github.com/manastria/petits-outils-pour-apprendre",
@@ -15,6 +18,8 @@
       "theme": "#2448a8",
       "background": "#eaeef6",
       "pitch": "Écrire des formules de maths au clavier, et les voir s’afficher en direct.",
+      "seo_title": "Cahier LaTeX : écrire les maths au clavier, gratuit et sans Internet",
+      "description": "Éditeur de formules de maths gratuit, sans compte et utilisable sans Internet, avec aperçu en direct. Utile aux élèves qui prennent leurs cours à l’ordinateur, notamment les élèves dys (dyspraxie, dysgraphie).",
       "details": "L’élève tape sa formule, le résultat s’affiche juste au-dessus, sur papier quadrillé. L’éditeur colore chaque paire d’accolades, aide à ne pas en oublier et explique les erreurs en français. Un bouton copie la formule vers Word.",
       "for": "Collège, lycée, études supérieures. Pensé pour les élèves qui prennent leurs cours à l’ordinateur.",
       "alt": "Capture d’écran de Cahier LaTeX : une formule saisie dans l’éditeur et son affichage sur papier quadrillé."
@@ -27,6 +32,8 @@
       "theme": "#213a86",
       "background": "#f1f3f8",
       "pitch": "Réviser les tables de multiplication, à la manière d’Anki.",
+      "seo_title": "Tables en tête : réviser les tables de multiplication, gratuit et sans Internet",
+      "description": "Application gratuite pour apprendre les tables de multiplication par répétition espacée, sans compte et sans Internet. Pas de chronomètre affiché, jamais de blocage : adaptée aux élèves dys (dyscalculie, dyslexie).",
       "details": "L’application repère les tables que l’enfant connaît mal ou met du temps à retrouver, et les lui fait revoir plus souvent. Points, séries et étoiles donnent envie de revenir ; jamais de blocage : après deux erreurs, la réponse s’affiche. Trois types de séance, dont un « jour calme » pour les jours de fatigue.",
       "for": "École primaire et début de collège.",
       "alt": "Capture d’écran de Tables en tête : une table de Pythagore colorée selon la progression."

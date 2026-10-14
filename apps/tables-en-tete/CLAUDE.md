@@ -43,6 +43,7 @@ S = { v:1, xp, streak:{last,n}, badges:['t7',…],
 - **Cartes inversées** `r{p}` : « Quelle multiplication donne p ? ». Toute décomposition valide est acceptée (24 = 3 × 8 = 4 × 6).
 - **Domaine des facteurs** : 2 à 10, ou 1 à 10 si la table de 1 est cochée. Une carte existe si au moins un facteur est dans une table cochée.
 - `l` est le niveau : −1 = jamais vue, 0 à 6 ensuite. `due` est un numéro de jour local (`today()`), intervalles `INT = [0,1,2,4,7,14,30]` jours. `t` est le temps moyen (moyenne glissante, plafonné à 30 s).
+- La table de Pythagore de l’accueil n’affiche que le triangle `a ≤ b` (une case par carte directe). Les cases hors des tables cochées sont en pointillés.
 - Couleurs de la table de Pythagore : −1 gris, 0 rouge, 1–2 orange, 3 jaune, 4–5 vert clair (« sue »), 6 vert (« maîtrisée »). Le pourcentage affiché = cartes directes de niveau ≥ 4.
 
 ### Notation (`TE.grade`)
