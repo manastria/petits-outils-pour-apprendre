@@ -300,6 +300,10 @@ def main():
         typo_html(shell("À propos et crédits — " + CONF["title"], "Qui a fait ces outils, licence MIT et composants utilisés.", ap, "../", "apropos/")),
         encoding="utf-8")
 
+    # Fichiers de preuve de propriété (Google Search Console…) : copiés à la racine du site, tels quels.
+    for f in sorted((SRC / "verification").glob("*.html")):
+        shutil.copy(f, OUT / f.name)
+
     # Moteurs de recherche : plan du site et robots.txt (URL absolues, donc seulement avec « site_url »)
     if SITE_URL:
         pages = ["", "apropos/"] + [a["slug"] + "/" for a in apps if a["status"] == "essai"]

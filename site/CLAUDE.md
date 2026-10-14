@@ -46,6 +46,7 @@ Les applications ne sont **pas modifiées** par le site : tout ce qui concerne l
 - Une page qui a déjà un service worker actif sert l’ancien contenu jusqu’à la visite suivante : c’est normal. Pour tester une mise à jour, recharger deux fois.
 - Les fins de ligne Windows (`\r\n`) d’un fichier d’application sont normalisées en `\n` par le build.
 - **Référencement** : `site_url` (adresse publique, avec `/` final) sert uniquement aux URL absolues pour les moteurs : `<link rel="canonical">`, `og:url`, `og:image`, `sitemap.xml`, `robots.txt`. Sans lui, ces éléments ne sont pas produits (avertissement). À changer si le site déménage. Les mots que cherchent les parents (« dys », « tables de multiplication »…) doivent figurer dans les titres, descriptions et la section « Pour les élèves dys », sans promesse.
+- **Preuve de propriété Google Search Console** : le fichier `google*.html` est dans `src/verification/` et copié à la racine du site par le build. Ne pas le supprimer, sinon Google perd la vérification. Pas de balise Analytics ni Tag Manager : ce serait un service extérieur.
 - **Ne pas parler de l’élève ni d’un diagnostic** dans les pages publiques, et ne pas citer d’établissement : le dépôt et le site sont publics.
 
 ## Conventions
