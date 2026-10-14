@@ -87,6 +87,9 @@ with sync_playwright() as p:
         if slug == "cahier-latex":
             pg.fill("#src", r"\dfrac{12}{24}=\dfrac{1}{2}"); pg.wait_for_timeout(500)
             check(pg.locator(".katex").count() > 0, f"{name} : HORS LIGNE, KaTeX affiche la formule")
+        if slug == "tables-en-tete":
+            pg.click("#start"); pg.wait_for_timeout(300)
+            check(pg.locator("#ans, #ra").count() > 0 or pg.locator("#qcard").is_visible(), f"{name} : HORS LIGNE, une séance démarre")
         check(not errs, f"{name} : aucune erreur de script hors ligne {errs}")
         ctx.set_offline(False)
         r = ctx.request.get(B + f"{slug}/{slug}-hors-ligne.html")

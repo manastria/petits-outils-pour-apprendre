@@ -22,7 +22,7 @@
     {
       "slug": "tables-en-tete",
       "name": "Tables en tête",
-      "status": "bientot",
+      "status": "essai",
       "source": "tables-en-tete/dist/tables-en-tete-hors-ligne.html",
       "theme": "#213a86",
       "background": "#f1f3f8",
